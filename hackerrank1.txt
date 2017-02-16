@@ -1,0 +1,47 @@
+/*
+ * Complete the function below.
+ */
+
+    static long[] memo = new long[26];
+
+    static void pascalTriangle(int k) {
+        if( k < 2 || k > 25){
+            return;
+        }
+        
+        Arrays.fill(memo, 0);
+        memo[0] = 1;
+        memo[1] = 1;
+        pascalPrint(0,k);
+    }
+
+    static void pascalPrint(int num, int max ){
+          if(num >= max){
+              return;
+          }
+          printSelf(num);        
+          pascalPrint(num+1, max);
+    }
+
+
+    
+    static long fact(int n){     
+        if(memo[n] != 0){
+            return memo[n];
+        } else {
+            memo[n] = n * fact(n-1);
+            return memo[n];
+        }
+    }
+
+    static void printSelf(int n){
+        long quotient = fact(n);
+        for(int i = 0; i <= n; i++){
+            long r = fact(i);
+            long n_r = (n - i) < 0 ? 1 : fact(n-i);
+            long den = r * n_r;
+            System.out.print(quotient/den + " ");
+        }
+        System.out.println();
+    }
+

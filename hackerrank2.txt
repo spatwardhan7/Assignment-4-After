@@ -1,0 +1,24 @@
+/*
+ * Complete the function below.
+ */
+    static final String YES = "Yes";
+    static final String NO = "No";
+    static String isPossible(int a, int b, int c, int d) {
+        if(a == c && b == d){
+            return YES;
+        }
+        
+        if(a > c || b > d){
+            return NO;
+        }
+        
+        String op1 = isPossible(a+b,b,c,d);
+        String op2 = isPossible(a,a+b,c,d);
+        
+        if(op1.equals(YES) || op2.equals(YES)){
+            return YES;
+        } 
+        
+        return NO;
+    }
+
